@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Stock Market Advisor</title>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI Stock Market Advisor</h1>
+
+        <p>Enter your investment amount and get the best stock recommendations.</p>
+
+        <div class="input-section">
+            <label>Enter Amount (₹):</label>
+            <input id="amountInput" type="number" placeholder="e.g., 10000" />
+
+            <button onclick="calculateRecommendation()">Get Recommendation</button>
+        </div>
+
+        <h2>📊 Recommended Stock</h2>
+        <div id="resultBox" class="result-box">
+            <p>Enter an amount to see results.</p>
+        </div>
+
+        <hr>
+
+        <h2>📈 Stock Growth Line Chart</h2>
+        <canvas id="lineChart"></canvas>
+
+        <h2>📉 Profit Comparison Bar Chart</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
