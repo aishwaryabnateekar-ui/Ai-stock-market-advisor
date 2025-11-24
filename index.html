@@ -9,38 +9,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div class="container">
-        <h1>AI Stock Market Advisor</h1>
+        <body>
+  <header>
+    <h1>AI Stock Market Advisor</h1>
+    <p>Find the best stocks to invest in with AI predictions</p>
+  </header>
 
-        <p>Enter your investment amount and get the best stock recommendations.</p>
+  <div class="container">
+    <input id="amountInput" type="number" placeholder="Enter investment amount (₹)" />
+    <button onclick="calculateRecommendation()">Calculate</button>
 
-        <div class="input-section">
-            <label>Enter Amount (₹):</label>
-            <input id="amountInput" type="number" placeholder="e.g., 10000" />
+    <div id="resultBox"></div>
 
-            <button onclick="calculateRecommendation()">Get Recommendation</button>
-        </div>
+    <canvas id="lineChart"></canvas>
+    <canvas id="barChart"></canvas>
+  </div>
 
-        <h2>📊 Recommended Stock</h2>
-        <div id="resultBox" class="result-box">
-            <p>Enter an amount to see results.</p>
-        </div>
-
-        <hr>
-
-        <h2>📈 Stock Growth Line Chart</h2>
-        <canvas id="lineChart"></canvas>
-
-        <h2>📉 Profit Comparison Bar Chart</h2>
-        <canvas id="barChart"></canvas>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-
-</body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>        
 </html>
