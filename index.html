@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>AI Stock Market Advisor</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Base and luxurious styling -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="background.css">
+  <!-- Elegant fonts for luxury look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <div class="lux-bg">
     <h1>AI Stock Market Advisor</h1>
-    <p>Find the best stocks to invest in with AI predictions</p>
-  </header>
-
-  <div class="container">
-    <input
-      id="amountInput"
-      type="number"
-      placeholder="Enter investment amount (₹)"
-      min="1"
-    />
-    <button onclick="calculateRecommendation()">Calculate</button>
-
-    <div id="resultBox"></div>
-
-    <canvas id="lineChart"></canvas>
-    <canvas id="barChart"></canvas>
+    <input type="text" id="investment" placeholder="Enter amount">
+    <button onclick="calculate()">Calculate</button>
+    <div class="card" id="result">
+      <!-- Example result. Will be updated by JS. -->
+      <h3>Best Stock to Invest</h3>
+      <p><strong>Infosys</strong> is the best choice.</p>
+      <p>Expected Profit: ₹10.26</p>
+      <p>Predicted Growth: 0.83%</p>
+    </div>
+    <div class="chart-container" id="chart">
+      <!-- Example chart. Replace with actual dynamic chart if needed. -->
+      <img src="https://via.placeholder.com/400x200?text=Infosys+Last+7+Days" alt="Infosys Last 7 Days" style="width:100%;border-radius:8px;">
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
