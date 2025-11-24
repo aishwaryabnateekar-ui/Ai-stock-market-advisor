@@ -28,14 +28,33 @@ window.onload = function () {
         legend: { display: true }
       },
       scales: {
-        x: {
-          grid: { color: '#224d35' }
-        },
-        y: {
-          grid: { color: '#224d35' }
-        }
+        x: { grid: { color: '#224d35' } },
+        y: { grid: { color: '#224d35' } }
       }
     }
   });
 };
 
+function calculate() {
+  // Get entered value
+  var investment = parseFloat(document.getElementById('investment').value);
+  // Example mock calculation for Infosys
+  if (!isNaN(investment) && investment > 0) {
+    // Sample values; customize your logic here
+    var profit = (investment * 0.083).toFixed(2);
+    var growth = "0.83%"; // This can also be calculated dynamically
+    var stock = "Infosys";
+    var resultHTML = `
+      <h3>Best Stock to Invest</h3>
+      <p><strong>${stock}</strong> is the best choice.</p>
+      <p>Expected Profit: ₹${profit}</p>
+      <p>Predicted Growth: ${growth}</p>
+    `;
+    document.getElementById('result').innerHTML = resultHTML;
+  } else {
+    document.getElementById('result').innerHTML = `
+      <h3>Error</h3>
+      <p>Please enter a valid investment amount.</p>
+    `;
+  }
+}
