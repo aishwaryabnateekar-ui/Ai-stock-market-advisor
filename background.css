@@ -1,0 +1,90 @@
+body {
+  background: linear-gradient(120deg, #181818 55%, #2a2347 100%);
+  min-height: 100vh;
+  margin: 0;
+  color: #eaeaea;
+  font-family: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Main container for content */
+.lux-bg {
+  background: rgba(28, 28, 38, 0.97);
+  border-radius: 18px;
+  box-shadow: 0 6px 36px rgba(180, 150, 80, 0.18);
+  border: 2px solid #d1b97f;
+  padding: 32px;
+  margin: 50px auto;
+  max-width: 560px;
+}
+
+/* Headings for a refined style */
+h1, h2, h3 {
+  font-family: 'Playfair Display', 'Montserrat', serif;
+  color: #edd382;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: #22223b;
+  color: #d1b97f;
+  border-radius: 16px;
+  box-shadow: 0 2px 18px rgba(200, 170, 100, 0.10);
+  border: 1px solid #cbb376;
+  padding: 24px;
+  margin-top: 30px;
+}
+
+button {
+  background: linear-gradient(90deg, #ad8d43 0%, #edd382 100%);
+  color: #191919;
+  border: none;
+  padding: 14px 32px;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 1.1em;
+  box-shadow: 0 3px 14px rgba(100, 80, 50, 0.20);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #edd382 0%, #ad8d43 100%);
+  color: #ad8d43;
+}
+
+/* For chart and content */
+.chart-container {
+  background: rgba(41, 41, 56, 0.92);
+  border-radius: 14px;
+  border: 1px solid #d1b97f;
+  padding: 18px;
+  margin-top: 24px;
+}
+
+input[type="text"], input[type="number"] {
+  background: #22223b;
+  color: #edd382;
+  border: 1px solid #cbb376;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 12px;
+  width: 80%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .lux-bg {
+    padding: 12px;
+    margin: 10px;
+    max-width: 98vw;
+  }
+}
+
+/* Luxurious accent for divider */
+.hr-lux {
+  border: none;
+  border-top: 2px solid #d1b97f;
+  margin: 28px 0;
+}
