@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Stock Market Advisor</title>
-
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- CSS -->
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Stock Market Advisor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        <body>
   <header>
     <h1>AI Stock Market Advisor</h1>
     <p>Find the best stocks to invest in with AI predictions</p>
   </header>
 
   <div class="container">
-    <input id="amountInput" type="number" placeholder="Enter investment amount (₹)" />
+    <input
+      id="amountInput"
+      type="number"
+      placeholder="Enter investment amount (₹)"
+      min="1"
+    />
     <button onclick="calculateRecommendation()">Calculate</button>
 
     <div id="resultBox"></div>
@@ -30,7 +28,6 @@
     <canvas id="barChart"></canvas>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
-</body>        
+</body>
 </html>
