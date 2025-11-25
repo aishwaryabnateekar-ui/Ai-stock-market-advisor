@@ -134,9 +134,11 @@
     };
     // Placeholder for your calculate function
     function calculate() {
-      // You can implement your logic here if needed
-      alert('Calculation function is a placeholder.');
-    }
+  var amount = document.getElementById('investment').value;
+  // Simple profit calculation example
+  var profit = amount * 0.0083;
+  alert('Expected Profit: ₹' + profit.toFixed(2));
+}
   </script>
 </body>
 </html>
