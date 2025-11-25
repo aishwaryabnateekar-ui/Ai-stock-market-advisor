@@ -3,142 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>AI Stock Market Advisor</title>
-  <!-- Base style sheet (optional, for your extra CSS) -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Luxurious background styles -->
   <style>
-    body {
-      background: linear-gradient(120deg, #22543d 55%, #7ed957 100%);
-      min-height: 100vh;
-      margin: 0;
-      color: #eaeaea;
-      font-family: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    }
-    .lux-bg {
-      background: rgba(40, 60, 32, 0.97);
-      border-radius: 18px;
-      box-shadow: 0 6px 36px rgba(34, 84, 61, 0.18);
-      border: 2px solid #aad17e;
-      padding: 32px;
-      margin: 50px auto;
-      max-width: 560px;
-    }
-    h1, h3 {
-      font-family: 'Playfair Display', 'Montserrat', serif;
-      color: #7ed957;
-    }
-    .card {
-      background: #224d35;
-      color: #bffe9b;
-      border-radius: 16px;
-      box-shadow: 0 2px 18px rgba(84, 255, 134, 0.10);
-      border: 1px solid #7ed957;
-      padding: 24px;
-      margin-top: 30px;
-    }
-    .chart-container {
-      background: rgba(41, 61, 46, 0.92);
-      border-radius: 14px;
-      border: 1.5px solid #7ed957;
-      padding: 18px;
-      margin-top: 24px;
-    }
-    input[type="text"], input[type="number"] {
-      background: #224d35;
-      color: #7ed957;
-      border: 1px solid #7ed957;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 1em;
-      margin-bottom: 12px;
-      width: 80%;
-      margin-top: 16px;
-    }
-    button {
-      background: linear-gradient(90deg, #7ed957 0%, #43a047 100%);
-      color: #19381f;
-      border: none;
-      padding: 14px 32px;
-      font-weight: 600;
-      border-radius: 10px;
-      font-size: 1.1em;
-      box-shadow: 0 3px 14px rgba(34, 84, 61, 0.20);
-      cursor: pointer;
-      margin-bottom: 16px;
-      transition: background 0.3s, color 0.3s;
-    }
-    button:hover {
-      background: linear-gradient(90deg, #43a047 0%, #7ed957 100%);
-      color: #7ed957;
-    }
-    @media (max-width: 700px) {
-      .lux-bg {
-        padding: 12px;
-        margin: 10px;
-        max-width: 98vw;
-      }
-    }
+    body { background: #1b242c; color: #d9dbdf; font-family: Arial, sans-serif; }
+    .container { max-width: 400px; margin: 50px auto; background: #222b36; padding: 30px; border-radius: 10px; box-shadow: 0 0 5px #0f161b; }
+    label, input, select, button { display: block; margin-bottom: 16px; }
+    input, select, button { padding: 10px; font-size: 18px; border-radius: 5px; border: 1px solid #444; }
+    button { background: #6be675; color: #242924; cursor: pointer; }
+    .result { background: #263040; padding: 20px; border-radius: 8px; margin-top: 10px; }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="lux-bg">
-    <h1>AI Stock Market Advisor</h1>
-    <input type="text" id="investment" placeholder="Enter amount">
-    <button onclick="calculate()">Calculate</button>
-    <div class="card" id="result">
-      <h3>Best Stock to Invest</h3>
-      <p><strong>Infosys</strong> is the best choice.</p>
-      <p>Expected Profit: ₹10.26</p>
-      <p>Predicted Growth: 0.83%</p>
-    </div>
-    <div class="chart-container">
-      <canvas id="myChart" width="400" height="200"></canvas>
-    </div>
-  </div>
-  <script>
-    // Example: Render a bar chart on page load
-    window.onload = function () {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar', // Change to 'line' for a line chart
-        data: {
-          labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
-          datasets: [{
-            label: 'Infosys Last 7 Days',
-            data: [1410, 1420, 1430, 1440, 1450, 1460, 1480],
-            backgroundColor: '#7ed957'
-          }]
-        },
-        options: {
-          responsive: false,
-          plugins: {
-            legend: { display: true }
-          },
-          scales: {
-            x: {
-              grid: {
-                color: '#224d35'
-              }
-            },
-            y: {
-              grid: {
-                color: '#224d35'
-              }
-            }
-          }
-        }
-      });
-    };
-    // Placeholder for your calculate function
-    function calculate() {
-  var amount = document.getElementById('investment').value;
-  // Simple profit calculation example
-  var profit = amount * 0.0083;
-  alert('Expected Profit: ₹' + profit.toFixed(2));
+<div class="container">
+  <h2>AI Stock Market Advisor</h2>
+  <label for="company">Select Company:</label>
+  <select id="company">
+    <option value="infosys">Infosys</option>
+    <option value="tcs">TCS</option>
+    <option value="reliance">Reliance</option>
+    <option value="hdfc">HDFC Bank</option>
+  </select>
+  <label for="investment">Enter investment amount:</label>
+  <input id="investment" type="number" placeholder="Amount in ₹">
+  <button onclick="calculate()">Calculate</button>
+  
+  <div class="result" id="result" style="display:none"></div>
+</div>
+
+<script>
+function calculate() {
+  var amount = parseFloat(document.getElementById('investment').value);
+  var company = document.getElementById('company').value;
+  if (isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid positive number.");
+    return;
+  }
+  // Example company growth rates (you can update these with real data)
+  var rates = {
+    infosys: 0.0083,
+    tcs: 0.0065,
+    reliance: 0.0111,
+    hdfc: 0.0074
+  };
+  var names = {
+    infosys: "Infosys",
+    tcs: "TCS",
+    reliance: "Reliance",
+    hdfc: "HDFC Bank"
+  };
+  var growthRate = rates[company];
+  var profit = amount * growthRate;
+  var resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `<strong>Best Stock to Invest</strong><br>
+    <b>${names[company]}</b> is the selected choice.<br>
+    Expected Profit: ₹${profit.toFixed(2)}<br>
+    Predicted Growth: ${(growthRate*100).toFixed(2)}%`;
 }
-  </script>
+</script>
 </body>
 </html>
