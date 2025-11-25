@@ -1,64 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>AI Stock Market Advisor</title>
-  <style>
-    body { background: #1b242c; color: #d9dbdf; font-family: Arial, sans-serif; }
-    .container { max-width: 400px; margin: 50px auto; background: #222b36; padding: 30px; border-radius: 10px; box-shadow: 0 0 5px #0f161b; }
-    label, input, select, button { display: block; margin-bottom: 16px; }
-    input, select, button { padding: 10px; font-size: 18px; border-radius: 5px; border: 1px solid #444; }
-    button { background: #6be675; color: #242924; cursor: pointer; }
-    .result { background: #263040; padding: 20px; border-radius: 8px; margin-top: 10px; }
-  </style>
-</head>
-<body>
-<div class="container">
-  <h2>AI Stock Market Advisor</h2>
-  <label for="company">Select Company:</label>
-  <select id="company">
-    <option value="infosys">Infosys</option>
-    <option value="tcs">TCS</option>
-    <option value="reliance">Reliance</option>
-    <option value="hdfc">HDFC Bank</option>
-  </select>
-  <label for="investment">Enter investment amount:</label>
-  <input id="investment" type="number" placeholder="Amount in ₹">
-  <button onclick="calculate()">Calculate</button>
-  
-  <div class="result" id="result" style="display:none"></div>
-</div>
 
-<script>
-function calculate() {
-  var amount = parseFloat(document.getElementById('investment').value);
-  var company = document.getElementById('company').value;
-  if (isNaN(amount) || amount <= 0) {
-    alert("Please enter a valid positive number.");
-    return;
-  }
-  // Example company growth rates (you can update these with real data)
-  var rates = {
-    infosys: 0.0083,
-    tcs: 0.0065,
-    reliance: 0.0111,
-    hdfc: 0.0074
-  };
-  var names = {
-    infosys: "Infosys",
-    tcs: "TCS",
-    reliance: "Reliance",
-    hdfc: "HDFC Bank"
-  };
-  var growthRate = rates[company];
-  var profit = amount * growthRate;
-  var resultDiv = document.getElementById('result');
-  resultDiv.style.display = 'block';
-  resultDiv.innerHTML = `<strong>Best Stock to Invest</strong><br>
-    <b>${names[company]}</b> is the selected choice.<br>
-    Expected Profit: ₹${profit.toFixed(2)}<br>
-    Predicted Growth: ${(growthRate*100).toFixed(2)}%`;
-}
-</script>
+<head>
+    <meta charset="UTF-8" />
+    <title>AI Stock Market Advisor</title>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #0d1117;
+            color: #e6e6e6;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: #161b22;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+
+        label, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        select, button {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        select {
+            background: #0d1117;
+            color: white;
+            border: 1px solid #30363d;
+        }
+
+        button {
+            background: #238636;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #2ea043;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #chartContainer {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>AI Stock Market Advisor</h2>
+
+        <label>Select Company:</label>
+        <select id="company">
+            <option value="tcs">TCS</option>
+            <option value="infosys">Infosys</option>
+            <option value="reliance">Reliance</option>
+            <option value="hdfc">HDFC Bank</option>
+            <option value="wipro">Wipro</option>
+        </select>
+
+        <button onclick="showGraph()">Show Growth Graph</button>
+
+        <div id="chartContainer">
+            <canvas id="growthChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let growthChart;
+
+        const stockData = {
+            tcs: [120, 150, 180, 220, 260, 310],
+            infosys: [100, 130, 160, 190, 240, 300],
+            reliance: [140, 170, 200, 230, 260, 290],
+            hdfc: [90, 120, 150, 180, 210, 250],
+            wipro: [80, 100, 130, 160, 190, 220]
+        };
+
+        function showGraph() {
+            const company = document.getElementById("company").value;
+            const values = stockData[company];
+
+            const ctx = document.getElementById("growthChart").getContext("2d");
+
+            if (growthChart) {
+                growthChart.destroy();
+            }
+
+            growthChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
+                    datasets: [{
+                        label: company.toUpperCase() + " Growth",
+                        data: values,
+                        borderWidth: 3,
+                        fill: false
+                    }]
+                }
+            });
+        }
+    </script>
+
 </body>
+
 </html>
