@@ -58,3 +58,88 @@ function calculate() {
     `;
   }
 }
+// Moderate Growth Values (15–25%)
+let growthRates = {
+    "HDFC Bank": 15,
+    "ICICI Bank": 17,
+    "Reliance": 18,
+    "TCS": 20,
+    "Infosys": 19,
+    "Airtel": 17,
+    "Asian Paints": 18
+};
+
+let chart; // Global chart object
+
+function calculateReturns() {
+    let investment = parseFloat(document.getElementById("amount").value);
+    let company = document.getElementById("company").value;
+
+    if (!investment || investment <= 0) {
+        document.getElementById("result").innerHTML = "Enter valid amount!";
+        return;
+    }
+
+    let growth = growthRates[company];
+
+    // Annual profit
+    let yearlyProfit = investment * (growth / 100);
+    let monthlyProfit = yearlyProfit / 12;
+    let dailyProfit = yearlyProfit / 365;
+    let totalAmount = investment + yearlyProfit;
+
+    // Display result text
+    document.getElementById("result").innerHTML = `
+        <strong>Best Stock to Invest:</strong><br>
+        ${company}<br><br>
+
+        <strong>Expected Annual Profit:</strong> ₹${yearlyProfit.toFixed(2)}<br>
+        <strong>Total After 1 Year:</strong> ₹${totalAmount.toFixed(2)}<br>
+        <strong>Monthly Profit:</strong> ₹${monthlyProfit.toFixed(2)}<br>
+        <strong>Daily Profit:</strong> ₹${dailyProfit.toFixed(2)}<br>
+        <strong>Annual Growth:</strong> ${growth}%
+    `;
+
+    // Show updated graph
+    showGrowthChart(investment, yearlyProfit);
+}
+
+
+// 📈 Create Monthly Growth Chart (12 months)
+function showGrowthChart(investment, yearlyProfit) {
+    const monthlyProfit = yearlyProfit / 12;
+
+    let months = [];
+    let values = [];
+    let currentValue = investment;
+
+    for (let i = 1; i <= 12; i++) {
+        currentValue += monthlyProfit;
+        months.push("Month " + i);
+        values.push(currentValue.toFixed(2));
+    }
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    const ctx = document.getElementById("growthChart").getContext("2d");
+
+    chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: months,
+            datasets: [{
+                label: "Portfolio Value Over 12 Months",
+                data: values,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            }
+        }
+    });
+}
